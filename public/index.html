@@ -13,8 +13,21 @@
     <drayman-element component="home"></drayman-element>
 
     <script>
-        initializeDraymanFramework();
+        initializeDraymanFramework({
+            browserCommands: () => ({
+                getToken: async () => {
+                    return localStorage.getItem('token');
+                },
+                saveToken: async ({ token }) => {
+                    localStorage.setItem('token', token);
+                },
+                removeToken: async ({ token }) => {
+                    localStorage.removeItem('token');
+                }
+            }),
+        });
     </script>
+
 </body>
 
 </html>
